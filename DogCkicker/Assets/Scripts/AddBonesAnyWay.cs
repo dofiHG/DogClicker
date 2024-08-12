@@ -10,10 +10,13 @@ public class AddBonesAnyWay : MonoBehaviour
     public TMP_Text bonesPerSecond;
     public GameObject textPrefab;
 
+
+    public int tempPerCkick;
+    public int tempPerSec;
+
+
     private void Start()
     {
-        YandexGame.savesData.bonesPerClick = 1;
-        YandexGame.savesData.bonesPerSecond = 1;
         InvokeRepeating("PlusBonePerSecond", 0, 1);
     }
 
@@ -22,6 +25,8 @@ public class AddBonesAnyWay : MonoBehaviour
         bonesCount.text = YandexGame.savesData.bonesCount.ToString();
         bonesPerClick.text = YandexGame.savesData.bonesPerClick.ToString();
         bonesPerSecond.text = YandexGame.savesData.bonesPerSecond.ToString();
+        YandexGame.savesData.bonesPerClick = tempPerCkick;
+        YandexGame.savesData.bonesPerSecond = tempPerSec;
     }
 
     public void ClickToImage()
@@ -32,6 +37,7 @@ public class AddBonesAnyWay : MonoBehaviour
         RectTransform canvasRectTransform = GameObject.Find("UI").GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, mousePos, null, out Vector2 localPoint);
         GameObject spawnedText = Instantiate(textPrefab, localPoint, Quaternion.identity, GameObject.Find("UI").transform);
+        spawnedText.GetComponent<TMP_Text>().text = YandexGame.savesData.bonesPerClick.ToString();
         RectTransform rectTransform = spawnedText.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = localPoint;
         Destroy(spawnedText, 1.2f);

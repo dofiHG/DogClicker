@@ -1,22 +1,30 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
 public class ChangeDogs : MonoBehaviour
 {
-    private Sprite currentImage;
+    private Image currentImage;
 
     public Sprite[] mainImages;
-    public int[] scoresToNextLvL;
+    public List<long> scoresToNextLvL;
+    public TMP_Text currentLvL;
 
-    private void Start() => currentImage = GameObject.Find("MainImage").GetComponent<Image>().sprite;
+    private void Start()
+    {
+        currentLvL.text = (YandexGame.savesData.CurrentLevel + 1).ToString();
+        currentImage = GameObject.Find("MainImage").GetComponent<Image>();
+    }
 
     private void Update()
     {
         if (YandexGame.savesData.bonesCount >= scoresToNextLvL[YandexGame.savesData.CurrentLevel])
         {
             YandexGame.savesData.CurrentLevel += 1;
-            currentImage = mainImages[YandexGame.savesData.CurrentLevel];
+            currentLvL.text = (YandexGame.savesData.CurrentLevel + 1).ToString();
+            currentImage.sprite = mainImages[YandexGame.savesData.CurrentLevel];
         }
     }
 }
