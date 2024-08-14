@@ -14,5 +14,6 @@ namespace YG
         public long bonesPerSecond;
         public long bonesPerClick;
         public int CurrentLevel;
+        public int usersLanguage;
     }
 }
