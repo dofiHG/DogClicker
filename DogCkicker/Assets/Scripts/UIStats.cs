@@ -13,8 +13,14 @@ public class UIStats : MonoBehaviour
     public TMP_Text currentBones;
     public Slider levelSlider;
 
+    public TMP_Text[] textsToConvert;
+
     private ConvertorToNormal convertor;
-    private void Start() => convertor = GameObject.Find("ConvertorToNormal").GetComponent<ConvertorToNormal>();
+    private void Start()
+    {
+        convertor = GameObject.Find("ConvertorToNormal").GetComponent<ConvertorToNormal>();
+        foreach (TMP_Text text in textsToConvert) { text.text = convertor.Convertor(text.text); }
+    }
 
     private void Update()
     {
@@ -24,10 +30,10 @@ public class UIStats : MonoBehaviour
 
     private void UIMath()
     {
-        bonesPerCkick.text = convertor.Convertor(1234);
-        bonesPerSecond.text = convertor.Convertor(YandexGame.savesData.bonesPerClick);
+        bonesPerCkick.text = convertor.Convertor(YandexGame.savesData.bonesPerClick);
+        bonesPerSecond.text = convertor.Convertor(YandexGame.savesData.bonesPerSecond);
         currentBones.text = convertor.Convertor(YandexGame.savesData.bonesCount);
-
+        
         levelSlider.maxValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel];
         try { levelSlider.minValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel - 1]; }
         catch { levelSlider.minValue = 0; }

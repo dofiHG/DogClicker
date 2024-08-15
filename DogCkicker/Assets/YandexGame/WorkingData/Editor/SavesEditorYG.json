@@ -1,5 +1,5 @@
 {
-    "idSave": 12,
+    "idSave": 25,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -7,5 +7,5 @@
     "bonesPerSecond": 0,
     "bonesPerClick": 1,
     "CurrentLevel": 0,
-    "usersLanguage": 0
+    "usersLanguage": 1
 }
