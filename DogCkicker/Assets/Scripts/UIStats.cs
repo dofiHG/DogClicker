@@ -37,7 +37,7 @@ public class UIStats : MonoBehaviour
         levelSlider.maxValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel];
         try { levelSlider.minValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel - 1]; }
         catch { levelSlider.minValue = 0; }
-        levelSlider.value = YandexGame.savesData.bonesCount;
+        levelSlider.value = Convert.ToInt64(YandexGame.savesData.bonesCount);
     }
         
     private void PaddingBone()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConvertorToNormal : MonoBehaviour
 {
-    public string Convertor(long value)
+    public string Convertor(double value)
     {
         string[] postfics = { "", "K", "M", "B", "T", "Q", "Qn", "S" };
 
@@ -16,7 +16,7 @@ public class ConvertorToNormal : MonoBehaviour
             i++;
         }
 
-        return value.ToString("#.##") + postfics[i];
+        return value.ToString("##.##") + postfics[i];
     }
 
     public string Convertor(string value)
@@ -25,7 +25,7 @@ public class ConvertorToNormal : MonoBehaviour
         return Convertor(doubleValue);
     }
 
-    public long ReversConvertor(string value)
+    public double ReversConvertor(string value)
     {
         CultureInfo culture = new CultureInfo("fr-FR");
         char prefix = value[0];
@@ -36,7 +36,7 @@ public class ConvertorToNormal : MonoBehaviour
 
         string suffix = value[^1].ToString().ToUpper();
         if (numberPart.Length == 0) { numberPart = suffix; }
-        long number = long.Parse(numberPart, culture);
+        double number = double.Parse(numberPart, culture);
 
         switch (suffix)
         {

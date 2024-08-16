@@ -14,6 +14,8 @@ public class AddBonesAnyWay : MonoBehaviour
 
     private void Start()
     {
+        YandexGame.savesData.bonesPerClick = tempPerCkick;
+        YandexGame.savesData.bonesPerSecond = tempPerSec;
         InvokeRepeating("PlusBonePerSecond", 0, 1);
         convertor = GameObject.Find("ConvertorToNormal").GetComponent<ConvertorToNormal>();
     }

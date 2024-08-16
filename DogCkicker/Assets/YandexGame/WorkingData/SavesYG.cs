@@ -10,9 +10,9 @@ namespace YG
         public string language = "ru";
         public bool promptDone;
 
-        public long bonesCount;
-        public long bonesPerSecond;
-        public long bonesPerClick;
+        public double bonesCount;
+        public double bonesPerSecond;
+        public double bonesPerClick;
         public int CurrentLevel;
         public int usersLanguage;
     }
