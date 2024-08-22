@@ -6,30 +6,26 @@ using YG;
 public class AddBonesAnyWay : MonoBehaviour
 {
     public GameObject textPrefab;
-
-    public int tempPerCkick;
-    public int tempPerSec;
+    public GameObject mainImage;
 
     private ConvertorToNormal convertor;
 
     private void Start()
     {
-        YandexGame.savesData.bonesPerClick = tempPerCkick;
-        YandexGame.savesData.bonesPerSecond = tempPerSec;
         InvokeRepeating("PlusBonePerSecond", 0, 1);
         convertor = GameObject.Find("ConvertorToNormal").GetComponent<ConvertorToNormal>();
+        if (YandexGame.savesData.bonesPerClick == 0) { YandexGame.savesData.bonesPerClick = 1; }
     }
-
 
     public void ClickToImage()
     {
+        mainImage.GetComponent<Animator>().Play("ImageIdle", -1, 0.3f);
         YandexGame.savesData.bonesCount += YandexGame.savesData.bonesPerClick;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = Input.mousePosition;
         RectTransform canvasRectTransform = GameObject.Find("UI").GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, mousePos, null, out Vector2 localPoint);
         GameObject spawnedText = Instantiate(textPrefab, localPoint, Quaternion.identity, GameObject.Find("UI").transform);
-        spawnedText.GetComponent<TMP_Text>().text = convertor.Convertor(YandexGame.savesData.bonesPerClick);
+        spawnedText.GetComponent<TMP_Text>().text = $"+{convertor.Convertor(YandexGame.savesData.bonesPerClick)}";
         RectTransform rectTransform = spawnedText.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = localPoint;
         Destroy(spawnedText, 1.2f);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ChangeDogs : MonoBehaviour
     {
         currentLvL.text = (YandexGame.savesData.CurrentLevel + 1).ToString();
         currentImage = GameObject.Find("MainImage").GetComponent<Image>();
+        currentImage.sprite = mainImages[YandexGame.savesData.CurrentLevel];
     }
 
     private void Update()

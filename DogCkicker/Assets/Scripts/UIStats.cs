@@ -33,7 +33,7 @@ public class UIStats : MonoBehaviour
         bonesPerCkick.text = convertor.Convertor(YandexGame.savesData.bonesPerClick);
         bonesPerSecond.text = convertor.Convertor(YandexGame.savesData.bonesPerSecond);
         currentBones.text = convertor.Convertor(YandexGame.savesData.bonesCount);
-        
+
         levelSlider.maxValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel];
         try { levelSlider.minValue = GameObject.Find("ChangeDogs").GetComponent<ChangeDogs>().scoresToNextLvL[YandexGame.savesData.CurrentLevel - 1]; }
         catch { levelSlider.minValue = 0; }
